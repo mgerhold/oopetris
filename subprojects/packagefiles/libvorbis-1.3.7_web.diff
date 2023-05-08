@@ -1,0 +1,35 @@
+diff --git a/lib/misc.h b/lib/misc.h
+index eac5160..0fe9400 100644
+--- a/lib/misc.h
++++ b/lib/misc.h
+@@ -18,6 +18,11 @@
+ #define _V_RANDOM_H_
+ #include "vorbis/codec.h"
+ 
++#ifdef __EMSCRIPTEN__
++#include <alloca.h>
++#endif
++
++
+ extern void *_vorbis_block_alloc(vorbis_block *vb,long bytes);
+ extern void _vorbis_block_ripcord(vorbis_block *vb);
+ extern int ov_ilog(ogg_uint32_t v);
+diff --git a/vq/bookutil.h b/vq/bookutil.h
+index d8fbcbe..7f22a1c 100644
+--- a/vq/bookutil.h
++++ b/vq/bookutil.h
+@@ -17,6 +17,14 @@
+ #ifndef _V_BOOKUTIL_H_
+ #define _V_BOOKUTIL_H_
+ 
++
++#ifdef __EMSCRIPTEN__
++#include <alloca.h>
++#include <string.h>
++char* strdup(const char*);
++#endif
++
++
+ #include <stdio.h>
+ #include <sys/time.h>
+ 

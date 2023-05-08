@@ -1,0 +1,21 @@
+diff --git a/meson.build b/meson.build
+index 8303343..f6e51c8 100644
+--- a/meson.build
++++ b/meson.build
+@@ -34,4 +34,8 @@ if host_machine.system() != 'windows'
+   # These don't seem to build on Windows.
+   subdir('vq')
+ endif
+-subdir('test')
++
++
++if get_option('test')
++    subdir('test')
++endif
+diff --git a/meson.options b/meson.options
+new file mode 100644
+index 0000000..743de14
+--- /dev/null
++++ b/meson.options
+@@ -0,0 +1 @@
++option('test', type: 'boolean', value: false, description: 'build tests')

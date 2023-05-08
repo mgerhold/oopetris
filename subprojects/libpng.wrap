@@ -8,5 +8,7 @@ patch_url = https://wrapdb.mesonbuild.com/v2/libpng_1.6.39-2/get_patch
 patch_hash = 8bcf8f69f50233f3a35e3718ab3c91b0c51b4c1a08a84c87be0b1f4813adf17f
 wrapdb_version = 1.6.39-2
 
+diff_files = libpng-1.6.39_web.diff
+
 [provide]
 libpng = libpng_dep

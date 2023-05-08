@@ -20,12 +20,15 @@ endif
 
 compile_args = []
 
+
 cpp = meson.get_compiler('cpp')
 if cpp.get_id() == 'msvc'
     add_project_arguments('/std:c++latest', language: 'cpp')
 elif cpp.get_id() == 'gcc'
     add_project_arguments('-std=c++23', '-Wold-style-cast', language: 'cpp')
 elif cpp.get_id() == 'clang'
+    add_project_arguments('-std=c++2b', language: 'cpp')
+elif cpp.get_id() == 'emscripten'
     add_project_arguments('-std=c++2b', language: 'cpp')
 else
     add_project_arguments('-std=c++20', language: 'cpp')
@@ -35,7 +38,7 @@ deps = []
 inc_dirs = []
 
 native = true
-if meson.is_cross_build() and host_machine.system() == 'android'
+if meson.is_cross_build()
     native = false
 endif
 
@@ -90,8 +93,6 @@ else
     endif
 endif
 
-
-
 deps += dependency(
     'sdl2_mixer',
     'SDL2_mixer',
@@ -99,10 +100,21 @@ deps += dependency(
     native: native,
     default_options: sdl2_mixer_flags,
 )
+
+if meson.is_cross_build() and host_machine.system() == 'emscripten'
+
+    # this is done here, since it's only needed for one file!
+    cpp = meson.get_compiler('cpp')
+    deps += cpp.find_library('embind', required: true)
+    deps += cpp.find_library('openal', required: true)
+endif
+
+## HEADER ONLY LIBS
 deps += dependency(
     'spdlog',
     required: true,
     native: native,
+    version: '>=1.1.11',
     default_options: ['tests=false'],
 )
 deps += dependency('nlohmann_json', required: true, native: native)
@@ -124,8 +136,6 @@ deps += dependency(
     fallback: ['magic_enum'],
     native: native,
 )
-
-
 deps += dependency(
     'argparse',
     required: true,
@@ -135,12 +145,14 @@ deps += dependency(
 
 
 src_files = []
+link_args = []
+link_whole = []
+
 
 subdir('src')
 
 ## install assets
 install_subdir('assets', install_dir: 'share/oopetris')
-
 if meson.is_cross_build() and host_machine.system() == 'android'
 
     library(
@@ -149,6 +161,20 @@ if meson.is_cross_build() and host_machine.system() == 'android'
         include_directories: inc_dirs,
         dependencies: deps,
         c_args: sdl2_mixer_defines,
+        cpp_args: compile_args + sdl2_mixer_defines,
+        override_options: ['warning_level=3', 'werror=true'],
+        native: native,
+    )
+elif meson.is_cross_build() and host_machine.system() == 'emscripten'
+
+    executable(
+        'oopetris',
+        src_files,
+        include_directories: inc_dirs,
+        dependencies: deps,
+        c_args: sdl2_mixer_defines,
+        link_whole: link_whole,
+        link_args: ['--preload-file', '../assets@/assets/'],
         cpp_args: compile_args + sdl2_mixer_defines,
         override_options: ['warning_level=3', 'werror=true'],
         native: native,

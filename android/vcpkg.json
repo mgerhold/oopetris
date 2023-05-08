@@ -1,0 +1,31 @@
+{
+  "name": "oopetris-web",
+  "version-string": "1.0.0",
+  "builtin-baseline": "ffe7360e0f5ba62f98b620575294ecb9d8a02980",
+  "dependencies": [
+    {
+      "name": "tl-optional",
+      "version>=": "2021-05-02"
+    },
+    {
+      "name": "nlohmann-json",
+      "version>=": "3.11.2"
+    },
+    {
+      "name": "magic-enum",
+      "version>=": "0.8.2"
+    },
+    {
+      "name": "spdlog",
+      "version>=": "1.11.0"
+    },
+    {
+      "name": "argparse",
+      "version>=": "2.9"
+    },
+    {
+      "name": "tl-expected",
+      "version>=": "2022-11-24"
+    }
+  ]
+}

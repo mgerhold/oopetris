@@ -1,0 +1,40 @@
+name: Web CI
+
+on:
+  release:
+    types: [published]
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  web-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
+
+      - name: Setup Meson
+        run: |
+          python -m pip install --upgrade pip
+          pip install meson
+
+      - name: Setup ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Run all
+        run: |
+          bash ./android/run-web.sh
+
+          # TODO upload page to gh-pages!
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: oopetris-assets
+          path: |
+            build-emcc/oopetris.html
+            build-emcc/oopetris.js
+            build-emcc/oopetris.wasm
+            build-emcc/oopetris.worker.js

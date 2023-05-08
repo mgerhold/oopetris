@@ -1,0 +1,14 @@
+diff --git a/meson.build b/meson.build
+index a57347c..03272e1 100644
+--- a/meson.build
++++ b/meson.build
+@@ -83,6 +83,9 @@ elif host_machine.cpu_family() in ['x86', 'x86_64']
+     'intel/intel_init.c',
+   )
+   c_args += '-DPNG_INTEL_SSE_OPT=1'
++elif host_machine.system() == 'emscripten'
++    thread_dep = dependency('threads')
++    libpng_deps += thread_dep
+ endif
+ 
+ libpng = library(

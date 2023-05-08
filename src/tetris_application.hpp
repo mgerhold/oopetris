@@ -16,8 +16,11 @@ struct TetrisApplication : public Application {
 private:
     using TetrionHeaders = std::vector<Recording::TetrionHeader>;
 
+#if defined(__EMSCRIPTEN__)
+    static constexpr auto settings_filename = "settings_key";
+#else
     static constexpr auto settings_filename = "settings.json";
-
+#endif
     std::vector<std::unique_ptr<ClockSource>> m_clock_sources;
     std::vector<SimulationStep> m_simulation_step_indices;
     std::vector<std::unique_ptr<Tetrion>> m_tetrions;

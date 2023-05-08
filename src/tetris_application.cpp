@@ -2,6 +2,10 @@
 #include "utils.hpp"
 #include <tl/optional.hpp>
 
+#if defined(__EMSCRIPTEN__)
+#include "web_utils.hpp"
+#endif
+
 TetrisApplication::TetrisApplication(CommandLineArguments command_line_arguments)
 #if defined(__ANDROID__)
     : Application{ "OOPetris", WindowPosition::Centered, std::move(command_line_arguments) } {
@@ -135,13 +139,22 @@ void TetrisApplication::render() const {
     }
 }
 
-void TetrisApplication::try_load_settings() try {
-    std::ifstream settings_file{ settings_filename };
-    m_settings = nlohmann::json::parse(settings_file);
-    spdlog::info("settings loaded");
-} catch (...) {
-    spdlog::error("unable to load settings from \"{}\"", settings_filename);
-    spdlog::warn("applying default settings");
+void TetrisApplication::try_load_settings() {
+    try {
+#if defined(__EMSCRIPTEN__)
+        const auto settings_string = utils::LocalStorage::get_item(settings_filename);
+        if (not settings_string.has_value()) {
+            return;
+        }
+        m_settings = nlohmann::json::parse(settings_string.value());
+#else
+        m_settings = nlohmann::json::parse(settings_filename);
+#endif
+        spdlog::info("settings loaded");
+    } catch (...) {
+        spdlog::error("unable to load settings from \"{}\"", settings_filename);
+        spdlog::warn("applying default settings");
+    }
 }
 
 [[nodiscard]] bool TetrisApplication::is_replay_mode() const {

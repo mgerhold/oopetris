@@ -42,7 +42,10 @@ namespace utils {
             throw std::runtime_error{ "Failed in getting the Pref Path: " + std::string{ SDL_GetError() } };
         }
         return std::filesystem::path{ std::string{ pref_path } };
+#elif defined(__EMSCRIPTEN__)
+        return std::filesystem::path{ "/" };
 #else
+
         // this is only used in local build for debugging, when compiling in release mode the path is real path where the app can store many things without interfering with other things (eg. AppData\Roaming\... onw Windows or  .local/share/... on Linux )
         return std::filesystem::path{ "." };
 #endif
@@ -63,6 +66,8 @@ namespace utils {
 // if you build in BUILD_INSTALLER mode, you have to assure that the data is there eg. music  + fonts!
 #endif
         return std::filesystem::path{ std::string{ resource_path } } / "assets";
+#elif defined(__EMSCRIPTEN__)
+        return std::filesystem::path{ "/assets" };
 #else
         return std::filesystem::path{ "assets" };
 #endif

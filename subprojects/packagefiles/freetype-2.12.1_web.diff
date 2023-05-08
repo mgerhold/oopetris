@@ -1,0 +1,14 @@
+diff --git a/meson.build b/meson.build
+index a066325..eaa53fb 100644
+--- a/meson.build
++++ b/meson.build
+@@ -255,6 +255,9 @@ if host_machine.system() == 'darwin'
+     '-compatibility_version', ft2_pkgconfig_version.split('.')[0],
+     '-current_version', ft2_pkgconfig_version
+   ]
++elif host_machine.system() == 'emscripten'
++    thread_dep = dependency('threads')
++    ft2_deps += thread_dep
+ endif
+ 
+ 

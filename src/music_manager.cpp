@@ -24,6 +24,11 @@ MusicManager::MusicManager(u8 channel_size)
       m_queued_music{ nullptr },
       m_channel_size{ channel_size },
       m_chunk_map{ std::unordered_map<std::string, Mix_Chunk*>{} } {
+
+
+//TODO: debug sound issues on EMSCRIPTEN
+#if not defined(__EMSCRIPTEN__)
+
     Mix_Init(MIX_INIT_FLAC | MIX_INIT_MP3);
     const int result = SDL_InitSubSystem(SDL_INIT_AUDIO);
     if (result != 0) {
@@ -35,6 +40,8 @@ MusicManager::MusicManager(u8 channel_size)
     if (result != 0) {
         throw std::runtime_error{ "error on open the audio device: " + std::string{ Mix_GetError() } };
     }
+
+#endif
 }
 
 void MusicManager::hook_music_finished() {
@@ -63,7 +70,10 @@ void MusicManager::hook_music_finished() {
 
 
 tl::optional<std::string> MusicManager::load_and_play_music(const std::filesystem::path& location, const usize delay) {
+#if defined(__EMSCRIPTEN__)
+    return "TODO: not implemented yet";
 
+#endif
 
     Mix_Music* music = Mix_LoadMUS(location.string().c_str());
     if (music == nullptr) {

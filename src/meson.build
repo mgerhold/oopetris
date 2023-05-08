@@ -52,6 +52,7 @@ src_files += files(
     'types.hpp',
     'utils.cpp',
     'utils.hpp',
+    'web_utils.cpp',
     'window.cpp',
     'window.hpp',
 )
