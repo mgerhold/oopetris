@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200cm"
+   height="200cm"
+   viewBox="0 0 2000 2000"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (1:1.2.2+202305151915+b0a8486541)"
+   sodipodi:docname="OOPetris.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="cm"
+     showgrid="false"
+     inkscape:zoom="0.1767767"
+     inkscape:cx="2774.6869"
+     inkscape:cy="1405.7282"
+     inkscape:window-width="1516"
+     inkscape:window-height="752"
+     inkscape:window-x="120"
+     inkscape:window-y="114"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer4" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Vorlagen"
+     inkscape:highlight-color="#838383">
+    <g
+       inkscape:label="Z-Tetromino Würfel"
+       id="layer1-3-4-8-5-9"
+       inkscape:highlight-color="#f00000"
+       transform="translate(885,15)">
+      <rect
+         style="fill:#760000;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398-6-7-6-0-0"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#f00000;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111-1-6-8-4-9"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside" />
+      <g
+         id="g5016-29-5-8-8-1"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-31-6-4-7-7"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-94-9-3-1-7"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-78-3-1-7-1"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7-4-7-4-2-1"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0-5-4-9-7-5"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9-03-5-2-2-9"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3-6-2-0-2-7"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2-1-5-6-6-7"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9-0-4-8-1-6"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1-6-7-9-0-7"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2-3-4-2-6-3"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-20-4-6-1-6"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-6-3-6-5-5"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-15-0-4-9-6"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-5-7-9-4-3"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+    <g
+       inkscape:label="T-Tetromino Würfel"
+       id="layer1-3-4-8-5-9-3"
+       inkscape:highlight-color="#a000f0"
+       transform="translate(735,15)">
+      <rect
+         style="fill:#500078;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398-6-7-6-0-0-6"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#a000f0;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111-1-6-8-4-9-7"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside" />
+      <g
+         id="g5016-29-5-8-8-1-5"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-31-6-4-7-7-3"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-94-9-3-1-7-5"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-78-3-1-7-1-6"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7-4-7-4-2-1-2"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0-5-4-9-7-5-9"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9-03-5-2-2-9-1"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3-6-2-0-2-7-2"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2-1-5-6-6-7-7"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9-0-4-8-1-6-0"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1-6-7-9-0-7-9"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2-3-4-2-6-3-3"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-20-4-6-1-6-6"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-6-3-6-5-5-0"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-15-0-4-9-6-6"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-5-7-9-4-3-2"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+    <g
+       inkscape:label="S-Tetromino Würfel"
+       id="layer1-3-4-8"
+       inkscape:highlight-color="#00f000"
+       transform="translate(585,15)">
+      <rect
+         style="fill:#007600;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398-6-7-6"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#00f000;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111-1-6-8"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside" />
+      <g
+         id="g5016-29-5-8"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-31-6-4"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-94-9-3"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-78-3-1"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7-4-7-4"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0-5-4-9"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9-03-5-2"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3-6-2-0"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2-1-5-6"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9-0-4-8"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1-6-7-9"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2-3-4-2"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-20-4-6"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-6-3-6"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-15-0-4"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-5-7-9"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+    <g
+       inkscape:label="O-Tetromino Würfel"
+       id="layer1-3-4"
+       inkscape:highlight-color="#f0f000"
+       transform="translate(435,15)">
+      <rect
+         style="fill:#6b6b00;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398-6-7"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#f0f000;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111-1-6"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside" />
+      <g
+         id="g5016-29-5"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-31-6"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-94-9"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-78-3"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7-4-7"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0-5-4"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9-03-5"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3-6-2"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2-1-5"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9-0-4"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1-6-7"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2-3-4"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-20-4"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-6-3"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-15-0"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-5-7"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+    <g
+       inkscape:label="L-Tetromino Würfel"
+       id="layer1-3"
+       inkscape:highlight-color="#f0a000"
+       transform="translate(285,15)">
+      <rect
+         style="fill:#764f01;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398-6"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#f0a000;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111-1"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside" />
+      <g
+         id="g5016-29"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-31"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-94"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-78"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7-4"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0-5"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9-03"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3-6"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2-1"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9-0"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1-6"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2-3"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-20"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-6"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-15"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-5"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+    <g
+       inkscape:label="J-Tetromino Würfel"
+       id="layer1"
+       inkscape:highlight-color="#0000f0"
+       transform="translate(135,15)">
+      <rect
+         style="fill:#00006c;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#0000f0;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside" />
+      <g
+         id="g5016"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+    <g
+       inkscape:label="I-Tetromino Würfel"
+       id="layer1-6"
+       transform="translate(-15,15)"
+       inkscape:highlight-color="#00f0f0">
+      <rect
+         style="fill:#017676;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect2398-0"
+         width="130"
+         height="130"
+         x="65"
+         y="85"
+         inkscape:label="outlinie" />
+      <rect
+         style="fill:#00f0f0;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+         id="rect111-6"
+         width="100"
+         height="100"
+         x="80"
+         y="100"
+         inkscape:label="inside"
+         inkscape:highlight-color="#00f0f0" />
+      <g
+         id="g5016-2"
+         inkscape:label="linie rechts oben">
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-61"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-8"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:1;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-7"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-7-9"
+         inkscape:label="linie rechts unten"
+         transform="matrix(1,0,0,-1,0,300)">
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-0-2"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-9-0"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#505050;fill-opacity:0.70;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-3-2"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-2-3"
+         inkscape:label="linie links unten"
+         transform="matrix(0,1,1,0,-20,20)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-9-7"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-1-5"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.39;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-2-9"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+      <g
+         id="g5016-5-22"
+         inkscape:label="linie links oben"
+         transform="rotate(90,130,35)">
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-3-8"
+           width="5"
+           height="5"
+           x="190"
+           y="85"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-5-9"
+           width="5"
+           height="5"
+           x="185"
+           y="90"
+           inkscape:label="linien fragment" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.55;stroke-width:0.265;stroke-dasharray:none"
+           id="rect4753-6-7-6-7"
+           width="5"
+           height="5"
+           x="180"
+           y="95"
+           inkscape:label="linien fragment" />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Pieces" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Vordergrund" />
+</svg>
