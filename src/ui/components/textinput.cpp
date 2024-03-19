@@ -13,16 +13,17 @@ ui::TextInput::TextInput(
         Font font,
         const Color& color,
         u32 focus_id,
+        const shapes::URect& fill_rect,
         const Layout& layout,
         bool is_top_level
 )
     : Widget{ layout, WidgetType::Component, is_top_level },
       Focusable{ focus_id },
-      Hoverable{ layout.get_rect() },
+      Hoverable{ fill_rect },
       m_service_provider{ service_provider },
       m_font{ std::move(font) },
       m_color{ color },
-      m_text_rect{ layout.get_rect() },
+      m_text_rect{ fill_rect },
       m_text_texture{ service_provider->renderer().get_texture_for_render_target(
               shapes::UPoint(1, 1) // this is a dummy point!
       ) },
@@ -36,10 +37,32 @@ ui::TextInput::TextInput(
     }
 }
 
+ui::TextInput::TextInput(
+        ServiceProvider* service_provider,
+        Font font,
+        const Color& color,
+        u32 focus_id,
+        std::pair<double, double> size,
+        Alignment alignment,
+        const Layout& layout,
+        bool is_top_level
+)
+    : TextInput{ service_provider,
+                 std::move(font),
+                 color,
+                 focus_id,
+                 ui::get_rectangle_aligned(
+                         layout,
+                         { static_cast<u32>(size.first * layout.get_rect().width()),
+                           static_cast<u32>(size.second * layout.get_rect().height()) },
+                         alignment
+                 ),
+                 layout,
+                 is_top_level } { }
+
 ui::TextInput::~TextInput() {
     on_unfocus();
 }
-
 
 void ui::TextInput::update() {
     // update the timer every frame (in which we have the focus), to check if the time has passed, to have a blinking cursor
@@ -52,17 +75,16 @@ void ui::TextInput::render(const ServiceProvider& service_provider) const {
     const auto background_color = has_focus() ? "#6D6E6D"_rgb : is_hovered() ? "#474747"_rgb : "#3A3B39"_rgb;
 
     const auto& renderer = service_provider.renderer();
-    const auto& layout_rect = layout().get_rect();
 
-    renderer.draw_rect_filled(layout_rect, background_color);
+    renderer.draw_rect_filled(fill_rect(), background_color);
     if (not m_text.empty()) {
 
-        auto to_rect = layout_rect;
+        auto to_rect = fill_rect();
 
-        // the text fits, so we don't have to scroll, the to_rect isn't the whole layout_rect
-        if (scaled_text_size < static_cast<u32>(layout_rect.width())) {
-            to_rect = shapes::URect{ layout_rect.top_left.x, layout_rect.top_left.y, scaled_text_size,
-                                     layout_rect.height() };
+        // the text fits, so we don't have to scroll, the to_rect isn't the whole fill_rect
+        if (scaled_text_size < static_cast<u32>(fill_rect().width())) {
+            to_rect = shapes::URect{ fill_rect().top_left.x, fill_rect().top_left.y, scaled_text_size,
+                                     fill_rect().height() };
         }
 
 
@@ -187,19 +209,18 @@ ui::TextInput::handle_event( // NOLINT(readability-function-cognitive-complexity
 
 void ui::TextInput::recalculate_textures(bool text_changed) {
 
-    const auto layout_rect = layout().get_rect();
     const auto& renderer = m_service_provider->renderer();
 
     constexpr auto cursor_width = 4;
     const auto unmoved_cursor = shapes::URect(
-            0, static_cast<u32>(static_cast<double>(layout_rect.height()) * 0.05), cursor_width,
-            static_cast<u32>(static_cast<double>(layout_rect.height()) * 0.90)
+            0, static_cast<u32>(static_cast<double>(fill_rect().height()) * 0.05), cursor_width,
+            static_cast<u32>(static_cast<double>(fill_rect().height()) * 0.90)
     );
 
     if (m_text.empty()) {
         m_viewport = shapes::URect{ 0, 0, 0, 0 };
 
-        m_cursor_rect = unmoved_cursor >> layout_rect.top_left;
+        m_cursor_rect = unmoved_cursor >> fill_rect().top_left;
 
 
         if (text_changed) {
@@ -212,12 +233,12 @@ void ui::TextInput::recalculate_textures(bool text_changed) {
     }
 
 
-    double ratio = static_cast<double>(m_text_texture.size().y) / static_cast<double>(layout_rect.height());
+    double ratio = static_cast<double>(m_text_texture.size().y) / static_cast<double>(fill_rect().height());
 
     if (text_changed) {
         m_text_texture = renderer.prerender_text(m_text, m_font, m_color);
 
-        ratio = static_cast<double>(m_text_texture.size().y) / static_cast<double>(layout_rect.height());
+        ratio = static_cast<double>(m_text_texture.size().y) / static_cast<double>(fill_rect().height());
 
         scaled_text_size = static_cast<u32>(static_cast<double>(m_text_texture.size().x) / ratio);
     }
@@ -252,27 +273,27 @@ void ui::TextInput::recalculate_textures(bool text_changed) {
             throw std::runtime_error("Error during SDL_TTF_SizeUTF8: " + std::string{ SDL_GetError() });
         }
 
-        const double ratio_sub_string = static_cast<double>(h) / static_cast<double>(layout_rect.height());
+        const double ratio_sub_string = static_cast<double>(h) / static_cast<double>(fill_rect().height());
 
         cursor_offset = static_cast<u32>(static_cast<double>(w) / ratio_sub_string);
     }
 
-    m_cursor_rect = unmoved_cursor >> layout_rect.top_left >> shapes::UPoint{ cursor_offset, 0 };
+    m_cursor_rect = unmoved_cursor >> fill_rect().top_left >> shapes::UPoint{ cursor_offset, 0 };
 
     // the text doesn't fit, so we have to scroll,we have to offset the viewport and the cursor_rect accordingly and center the viewport around the cursor
-    if (scaled_text_size >= static_cast<u32>(layout_rect.width())) {
+    if (scaled_text_size >= static_cast<u32>(fill_rect().width())) {
 
-        const int cursor_middle = static_cast<int>(cursor_offset) - static_cast<int>(layout_rect.width() / 2);
+        const int cursor_middle = static_cast<int>(cursor_offset) - static_cast<int>(fill_rect().width() / 2);
 
         u32 final_offset = 0;
 
         if (cursor_middle < 0) {
             final_offset = 0;
-        } else if ((scaled_text_size - cursor_middle) < static_cast<u32>(layout_rect.width())) {
-            final_offset = scaled_text_size - static_cast<u32>(layout_rect.width());
+        } else if ((scaled_text_size - cursor_middle) < static_cast<u32>(fill_rect().width())) {
+            final_offset = scaled_text_size - static_cast<u32>(fill_rect().width());
 
             // if we reached the end, we have shift the cursor for some  pixels, so that we can see the bar xD, thsi strectehces it slightly, but it's a simple solution
-            if ((scaled_text_size - cursor_middle) <= static_cast<u32>(layout_rect.width() / 2)) {
+            if ((scaled_text_size - cursor_middle) <= static_cast<u32>(fill_rect().width() / 2)) {
                 final_offset += 2 * cursor_width;
             }
         } else {
@@ -280,7 +301,7 @@ void ui::TextInput::recalculate_textures(bool text_changed) {
         }
 
         m_viewport = shapes::URect{ static_cast<u32>(static_cast<double>(final_offset) * ratio), 0,
-                                    static_cast<u32>(static_cast<double>(layout_rect.width()) * ratio),
+                                    static_cast<u32>(static_cast<double>(fill_rect().width()) * ratio),
                                     m_text_texture.size().y };
         m_cursor_rect = m_cursor_rect >> shapes::IPoint{ -static_cast<int>(final_offset), 0 };
     }
@@ -350,7 +371,7 @@ bool ui::TextInput::remove_at_cursor() {
 }
 
 void ui::TextInput::on_focus() {
-    m_service_provider->event_dispatcher().start_text_input(layout().get_rect());
+    m_service_provider->event_dispatcher().start_text_input(fill_rect());
     timer.start();
 }
 

@@ -27,12 +27,24 @@ namespace ui {
         bool cursor_shown{ true };
         helper::Timer timer;
 
+        explicit TextInput(
+                ServiceProvider* service_provider,
+                Font font,
+                const Color& color,
+                u32 focus_id,
+                const shapes::URect& fill_rect,
+                const Layout& layout,
+                bool is_top_level
+        );
+
     public:
         explicit TextInput(
                 ServiceProvider* service_provider,
                 Font font,
                 const Color& color,
                 u32 focus_id,
+                std::pair<double, double> size,
+                Alignment alignment,
                 const Layout& layout,
                 bool is_top_level
         );

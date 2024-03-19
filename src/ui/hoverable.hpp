@@ -1,5 +1,6 @@
 #pragma once
 
+#include "graphics/rect.hpp"
 #include "helper/bool_wrapper.hpp"
 #include "helper/types.hpp"
 #include "platform/capabilities.hpp"
@@ -30,6 +31,9 @@ namespace ui {
 
         [[nodiscard]] auto is_hovered() const {
             return m_is_hovered;
+        }
+        [[nodiscard]] const shapes::URect& fill_rect() const {
+            return m_fill_rect;
         }
 
 
