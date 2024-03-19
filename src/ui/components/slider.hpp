@@ -44,6 +44,8 @@ namespace ui {
                 bool is_top_level
         );
 
+        ~Slider();
+
 
         void render(const ServiceProvider& service_provider) const override;
 

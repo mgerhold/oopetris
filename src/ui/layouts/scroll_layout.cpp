@@ -130,9 +130,9 @@ ui::ScrollLayout::handle_event( // NOLINT(readability-function-cognitive-complex
             auto desired_scroll_height = 0;
 
 
-            if (y <= scrollbar_rect.top_left.y) {
+            if (y <= static_cast<i32>(scrollbar_rect.top_left.y)) {
                 desired_scroll_height = 0;
-            } else if (y >= scrollbar_rect.bottom_right.y) {
+            } else if (y >= static_cast<i32>(scrollbar_rect.bottom_right.y)) {
                 // this is to high, but recalculate_sizes reset it to the highest possible value!
                 desired_scroll_height = static_cast<int>(total_widgets_height);
             } else {

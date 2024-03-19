@@ -57,6 +57,10 @@ ui::Slider::Slider(
 }
 
 
+ui::Slider::~Slider() {
+    SDL_CaptureMouse(SDL_FALSE);
+}
+
 void ui::Slider::render(const ServiceProvider& service_provider) const {
     const auto color = (has_focus() ? Color::red() : Color::blue());
 
@@ -101,9 +105,9 @@ helper::BoolWrapper<ui::EventHandleType> ui::Slider::handle_event( // NOLINT(rea
 
             const auto& [x, _] = utils::get_raw_coordinates(window, event);
 
-            if (x <= bar_rect.top_left.x) {
+            if (x <= static_cast<i32>(bar_rect.top_left.x)) {
                 current_value = m_range.first;
-            } else if (x >= bar_rect.bottom_right.x) {
+            } else if (x >= static_cast<i32>(bar_rect.bottom_right.x)) {
                 current_value = m_range.second;
             } else {
 
@@ -111,6 +115,7 @@ helper::BoolWrapper<ui::EventHandleType> ui::Slider::handle_event( // NOLINT(rea
                         static_cast<float>(x - bar_rect.top_left.x) / static_cast<float>(bar_rect.width());
                 current_value = percentage * (m_range.second - m_range.first) + m_range.first;
                 is_dragging = true;
+                SDL_CaptureMouse(SDL_TRUE);
             }
         };
 
@@ -126,11 +131,13 @@ helper::BoolWrapper<ui::EventHandleType> ui::Slider::handle_event( // NOLINT(rea
 
             } else if (utils::is_event_in(window, event, slider_rect)) {
                 is_dragging = true;
+                SDL_CaptureMouse(SDL_TRUE);
                 handled = { true, ui::EventHandleType::RequestFocus };
             }
 
         } else if (utils::event_is_click_event(event, utils::CrossPlatformClickEvent::ButtonUp)) {
             is_dragging = false;
+            SDL_CaptureMouse(SDL_FALSE);
             handled = true;
 
         } else if (utils::event_is_click_event(event, utils::CrossPlatformClickEvent::Motion)) {
