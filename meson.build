@@ -254,7 +254,7 @@ endif
 magic_enum_dep = dependency(
     'magic_enum',
     required: true,
-    default_options: {'test': 'false'},
+    default_options: {'test': false},
 )
 recording_dependencies += magic_enum_dep
 deps += magic_enum_dep

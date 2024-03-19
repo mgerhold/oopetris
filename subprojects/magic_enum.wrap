@@ -5,7 +5,6 @@ source_filename = magic_enum-v0.9.5.tar.gz
 source_hash = 44ad80db5a72f5047e01d90e18315751d9ac90c0ab42cbea7a6f9ec66a4cd679
 source_fallback_url = https://github.com/mesonbuild/wrapdb/releases/download/magic_enum_0.9.5-1/magic_enum-v0.9.5.tar.gz
 wrapdb_version = 0.9.5-1
-diff_files = magic_enum_android.diff
 
 [provide]
 magic_enum = magic_enum_dep
