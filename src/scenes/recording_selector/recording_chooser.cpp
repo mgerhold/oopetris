@@ -87,9 +87,7 @@ custom_ui::RecordingFileChooser::RecordingFileChooser(
 }
 
 void custom_ui::RecordingFileChooser::render(const ServiceProvider& service_provider) const {
-    auto color = has_focus()    ? is_hovered() ? "#00f2ff"_c : "#00bbff"_c
-                 : is_hovered() ? "#C9C9C9"_c
-                                : "#9C9C9C"_c;
+    auto color = has_focus() ? is_hovered() ? "#00f2ff"_c : "#00bbff"_c : is_hovered() ? "#C9C9C9"_c : "#9C9C9C"_c;
 
     service_provider.renderer().draw_rect_filled(layout().get_rect(), color);
 

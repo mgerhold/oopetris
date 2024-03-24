@@ -9,8 +9,6 @@
 #include "ui/layout.hpp"
 #include "ui/widget.hpp"
 
-
-
 detail::ColorSlider::ColorSlider(
         ServiceProvider* service_provider,
         Range range,
@@ -28,7 +26,6 @@ detail::ColorSlider::ColorSlider(
                               layout,
                               is_top_level },
       m_service_provider{ service_provider } { }
-
 
 [[nodiscard]] std::pair<shapes::URect, shapes::URect> detail::ColorSlider::get_rectangles() const {
 
@@ -65,7 +62,6 @@ detail::ColorSlider::ColorSlider(
     return { layout_rect, slider_rect };
 }
 
-
 void detail::ColorSlider::after_update() {
 
     const auto& renderer = m_service_provider->renderer();
@@ -88,7 +84,6 @@ void detail::ColorSlider::after_update() {
     renderer.reset_render_target();
 }
 
-
 void detail::ColorSlider::render(const ServiceProvider& service_provider) const {
 
     const auto& renderer = service_provider.renderer();
@@ -97,7 +92,6 @@ void detail::ColorSlider::render(const ServiceProvider& service_provider) const 
 
     renderer.draw_rect_filled(slider_rect(), Color::white(0xAA));
 }
-
 
 detail::ColorCanvas::ColorCanvas(const ui::Layout& layout, bool is_top_level)
     : ui::Widget{ layout, ui::WidgetType::Component, is_top_level },
@@ -117,7 +111,6 @@ detail::ColorCanvas::handle_event(const SDL_Event& event, const Window* window) 
     UNUSED(window);
     return false;
 }
-
 
 ui::ColorPicker::ColorPicker(
         ServiceProvider* service_provider,
@@ -181,7 +174,6 @@ ui::ColorPicker::ColorPicker(
             },
             5.0, ui::Layout{ color_bar_rect }, false
     );
-
 
     const auto components_fill_layout =
             ui::RelativeLayout{ bars_fill_rect, 0.0, color_bar_size, 1.0, 1.0 - color_bar_size };

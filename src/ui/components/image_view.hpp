@@ -5,8 +5,8 @@
 #include "ui/hoverable.hpp"
 #include "ui/widget.hpp"
 
-#include <string>
 #include <filesystem>
+#include <string>
 
 namespace ui {
     struct ImageView final : public Widget {

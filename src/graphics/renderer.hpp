@@ -7,8 +7,8 @@
 #include "window.hpp"
 
 #include <SDL.h>
-#include <string>
 #include <filesystem>
+#include <string>
 
 struct Renderer final {
 public:
