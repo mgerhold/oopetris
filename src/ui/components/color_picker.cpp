@@ -25,7 +25,25 @@ detail::ColorSlider::ColorSlider(
                               step,
                               layout,
                               is_top_level },
-      m_service_provider{ service_provider } { }
+      m_texture{ service_provider->renderer().get_texture_for_render_target(bar_rect().to_dimension_point()) } {
+
+    service_provider->renderer().set_render_target(m_texture);
+
+    const auto w = bar_rect().width();
+    const auto h = bar_rect().height();
+
+    for (u32 x = 0; x < w; x++) {
+        Color color{
+            HSVColor{(static_cast<double>(x) / static_cast<double>(w)) * 360.0, 1.0, 1.0}
+        };
+
+        service_provider->renderer().draw_line(
+                shapes::UPoint{ x, 0 }, shapes::UPoint{ x, static_cast<u32>(h - 1) }, color
+        );
+    }
+
+    service_provider->renderer().reset_render_target();
+}
 
 [[nodiscard]] std::pair<shapes::URect, shapes::URect> detail::ColorSlider::get_rectangles() const {
 
@@ -62,33 +80,11 @@ detail::ColorSlider::ColorSlider(
     return { layout_rect, slider_rect };
 }
 
-void detail::ColorSlider::after_update() {
-
-    const auto& renderer = m_service_provider->renderer();
-
-    m_texture = std::make_unique<Texture>(renderer.get_texture_for_render_target(bar_rect().to_dimension_point()));
-
-    renderer.set_render_target(*m_texture);
-
-    const auto w = bar_rect().width();
-    const auto h = bar_rect().height();
-
-    for (u32 x = 0; x < w; x++) {
-        Color color{
-            HSVColor{(static_cast<double>(x) / static_cast<double>(w)) * 360.0, 1.0, 1.0}
-        };
-
-        renderer.draw_line(shapes::UPoint{ x, 0 }, shapes::UPoint{ x, static_cast<u32>(h - 1) }, color);
-    }
-
-    renderer.reset_render_target();
-}
-
 void detail::ColorSlider::render(const ServiceProvider& service_provider) const {
 
     const auto& renderer = service_provider.renderer();
 
-    renderer.draw_texture(*m_texture, bar_rect());
+    renderer.draw_texture(m_texture, bar_rect());
 
     renderer.draw_rect_filled(slider_rect(), Color::white(0xAA));
 }
