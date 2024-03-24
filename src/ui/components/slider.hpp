@@ -4,32 +4,13 @@
 #include <spdlog/spdlog.h>
 #include <utility>
 
-#include "graphics/rect.hpp"
-#include "ui/focusable.hpp"
-#include "ui/widget.hpp"
+#include "abstract_slider.hpp"
 
 namespace ui {
 
-    struct Slider : public Widget, public Focusable {
-    public:
-        using Range = std::pair<float, float>;
-        using Getter = std::function<float()>;
-        using Setter = std::function<void(const float&)>;
-
-
+    struct Slider : public AbstractSlider<double> {
     private:
-        Range m_range;
-        Getter m_getter;
-        Setter m_setter;
-        float m_step;
-        float current_value;
-        bool is_dragging{ false };
-        shapes::URect fill_rect;
-
-
-        //TODO: refactor this in member variables, so that recalculations only happen when changing them and not every frame!
-        [[nodiscard]] std::pair<shapes::URect, shapes::URect> get_rectangles() const;
-
+        shapes::URect m_fill_rect;
 
     public:
         explicit Slider(
@@ -37,23 +18,17 @@ namespace ui {
                 Range range,
                 Getter getter,
                 Setter setter,
-                float step,
+                double step,
                 std::pair<double, double> size,
                 Alignment alignment,
                 const Layout& layout,
                 bool is_top_level
         );
 
-        ~Slider();
-
-
         void render(const ServiceProvider& service_provider) const override;
 
-        helper::BoolWrapper<ui::EventHandleType>
-        handle_event(const SDL_Event& event, const Window* window) // NOLINT(readability-function-cognitive-complexity)
-                override;
-
-        void on_change();
+    private:
+        [[nodiscard]] std::pair<shapes::URect, shapes::URect> get_rectangles() const override;
     };
 
 } // namespace ui
