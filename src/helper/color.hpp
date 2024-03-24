@@ -90,15 +90,15 @@ struct Color {
 
         long i{};
 
-        double r{};
-        double g{};
-        double b{};
+        double d_r{};
+        double d_g{};
+        double d_b{};
 
         if (color.s <= 0.0) { // < is bogus, just shuts up warnings
-            r = color.v;
-            g = color.v;
-            b = color.v;
-            set_color(r, g, b);
+            d_r = color.v;
+            d_g = color.v;
+            d_b = color.v;
+            set_color(d_r, d_g, d_b);
             return;
         }
 
@@ -117,40 +117,39 @@ struct Color {
 
         switch (i) {
             case 0:
-                r = color.v;
-                g = t;
-                b = p;
+                d_r = color.v;
+                d_g = t;
+                d_b = p;
                 break;
             case 1:
-                r = q;
-                g = color.v;
-                b = p;
+                d_r = q;
+                d_g = color.v;
+                d_b = p;
                 break;
             case 2:
-                r = p;
-                g = color.v;
-                b = t;
+                d_r = p;
+                d_g = color.v;
+                d_b = t;
                 break;
-
             case 3:
-                r = p;
-                g = q;
-                b = color.v;
+                d_r = p;
+                d_g = q;
+                d_b = color.v;
                 break;
             case 4:
-                r = t;
-                g = p;
-                b = color.v;
+                d_r = t;
+                d_g = p;
+                d_b = color.v;
                 break;
             case 5:
             default:
-                r = color.v;
-                g = p;
-                b = q;
+                d_r = color.v;
+                d_g = p;
+                d_b = q;
                 break;
         }
 
-        set_color(r, g, b);
+        set_color(d_r, d_g, d_b);
     }
 
     [[nodiscard]] constexpr bool operator==(const Color& other) const {
