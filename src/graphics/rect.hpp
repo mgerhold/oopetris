@@ -3,6 +3,7 @@
 #include "graphics/point.hpp"
 
 #include <SDL.h>
+#include <utility>
 
 namespace shapes {
 
@@ -32,6 +33,10 @@ namespace shapes {
             return { static_cast<int>(top_left.x), static_cast<int>(top_left.y), static_cast<int>(width()),
                      static_cast<int>(height()) };
         }
+        [[nodiscard]] std::pair<T, T> to_dimension_pair() const {
+            return { width(), height() };
+        }
+
 
         template<typename S>
         constexpr AbstractRect<S> cast() const {
