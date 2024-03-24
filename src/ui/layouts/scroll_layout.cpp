@@ -1,5 +1,6 @@
 
 #include "scroll_layout.hpp"
+#include "helper/color_literals.hpp"
 
 ui::ItemSize::ItemSize(const u32 height, ItemSizeType type) : height{ height }, type{ type } { }
 
@@ -12,9 +13,7 @@ ui::ItemSize::ItemSize(const u32 height, ItemSizeType type) : height{ height }, 
     return type;
 }
 
-
 ui::AbsolutItemSize::AbsolutItemSize(const u32 height) : ItemSize{ height, ItemSizeType::Absolut } { }
-
 
 ui::RelativeItemSize::RelativeItemSize(const shapes::URect& rect, const double height)
     : ItemSize{ static_cast<u32>(height * rect.height()), ItemSizeType::Relative } {
@@ -102,8 +101,8 @@ void ui::ScrollLayout::render(const ServiceProvider& service_provider) const {
 
     // render the scrollbar when it makes sense
     if (total_widgets_height > scrollbar_rect.height()) {
-        renderer.draw_rect_filled(scrollbar_rect, "#A19797"_rgb);
-        renderer.draw_rect_filled(scrollbar_mover_rect, is_dragging ? "#666161"_rgb : "#524F4F"_rgb);
+        renderer.draw_rect_filled(scrollbar_rect, "#A19797"_c);
+        renderer.draw_rect_filled(scrollbar_mover_rect, is_dragging ? "#666161"_c : "#524F4F"_c);
     }
 }
 

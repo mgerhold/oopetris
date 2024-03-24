@@ -27,9 +27,9 @@ namespace ui {
               m_top_level{ is_top_level } { }
 
         Widget(const Widget&) = delete;
-        Widget(Widget&&) = delete;
+        Widget(Widget&&) = default;
         Widget& operator=(const Widget&) = delete;
-        Widget& operator=(Widget&&) = delete;
+        Widget& operator=(Widget&&) = default;
 
         virtual ~Widget() = default;
 

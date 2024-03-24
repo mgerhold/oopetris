@@ -2,6 +2,7 @@
 
 #include "textinput.hpp"
 #include "graphics/renderer.hpp"
+#include "helper/color_literals.hpp"
 #include "manager/event_dispatcher.hpp"
 
 
@@ -72,7 +73,7 @@ void ui::TextInput::update() {
 }
 
 void ui::TextInput::render(const ServiceProvider& service_provider) const {
-    const auto background_color = has_focus() ? "#6D6E6D"_rgb : is_hovered() ? "#474747"_rgb : "#3A3B39"_rgb;
+    const auto background_color = has_focus() ? "#6D6E6D"_c : is_hovered() ? "#474747"_c : "#3A3B39"_c;
 
     const auto& renderer = service_provider.renderer();
 
@@ -101,6 +102,8 @@ ui::TextInput::handle_event( // NOLINT(readability-function-cognitive-complexity
         const SDL_Event& event,
         const Window* window
 ) {
+
+    //TODO: if already has focus, position cursor there, where we clicked
     if (const auto hover_result = detect_hover(event, window); hover_result) {
         if (hover_result.is(ActionType::Clicked)) {
             return { true, EventHandleType::RequestFocus };
