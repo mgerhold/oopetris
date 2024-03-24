@@ -473,7 +473,9 @@ namespace {
                 }
 
 
-                return const_utils::good_result(Color::from_hsv(h, s, v));
+                return const_utils::good_result(Color{
+                        HSVColor{h, s, v}
+                });
             }
 
 
@@ -544,7 +546,9 @@ namespace {
                 }
 
 
-                return const_utils::good_result(Color::from_hsv(h, s, v, static_cast<u8>(a)));
+                return const_utils::good_result(Color{
+                        HSVColor{h, s, v, static_cast<u8>(a)}
+                });
             }
         }
 

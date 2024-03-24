@@ -142,19 +142,11 @@ ui::ColorPicker::ColorPicker(
     );
 
     m_color_slider = std::make_unique<detail::ColorSlider>(
-            std::pair<double, double>{ 0.0, 360.0 },
-            [this]() -> double {
-                //TODO
-                UNUSED(this);
-                return 0.0;
-                //return this->m_color.to_hsv_color().h;
-            },
+            std::pair<double, double>{ 0.0, 360.0 }, [this]() -> double { return this->m_color.to_hsv_color().h; },
             [this](const double& value) {
-                //auto hsv_color = m_color.to_hsv_color();
-                //hsv_color.h = value;
-                //this->m_color = Color::Color(hsv_color);
-                //TODO
-                UNUSED(value);
+                auto hsv_color = m_color.to_hsv_color();
+                hsv_color.h = value;
+                this->m_color = Color{ hsv_color };
                 this->after_color_change(ColorChangeType::Hue);
             },
             5.0, ui::Layout{ color_bar_rect }, false
