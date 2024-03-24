@@ -68,7 +68,7 @@ namespace scenes {
             const auto final_path = utils::get_assets_folder() / "authors" / image_name;
 
             tile_layout->add<ui::ImageView>(
-                    service_provider, final_path.string(), std::pair<double, double>{ 1.0, 1.0 }, true,
+                    service_provider, final_path, std::pair<double, double>{ 1.0, 1.0 }, true,
                     ui::Alignment{ ui::AlignmentHorizontal::Middle, ui::AlignmentVertical::Center }
             );
         }

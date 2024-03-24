@@ -8,6 +8,7 @@
 #include "ui/hoverable.hpp"
 #include "ui/layouts/tile_layout.hpp"
 #include "ui/widget.hpp"
+#include "helper/color_literals.hpp"
 
 #include <filesystem>
 #include <utility>

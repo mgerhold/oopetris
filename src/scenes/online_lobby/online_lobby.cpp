@@ -53,11 +53,11 @@ namespace scenes {
                         ui::Alignment{ ui::AlignmentHorizontal::Middle, ui::AlignmentVertical::Center }
                 );
             } else {
-                scroll_layout->add<ui::Button>(
+                scroll_layout->add<ui::TextButton>(
                         ui::RelativeItemSize{ scroll_layout->layout(), 0.2 }, service_provider,
                         fmt::format("Button Nr.: {}", i), service_provider->fonts().get(FontId::Default),
                         Color::white(), focus_helper.focus_id(),
-                        [i](const ui::Button&) -> bool {
+                        [i](const ui::TextButton&) -> bool {
                             std::cout << "Pressed button: " << i << "\n";
                             return false;
                         },
@@ -77,10 +77,10 @@ namespace scenes {
                                                 ? std::pair<double, double>{ 0.1, 0.1 }
                                                 : std::pair<double, double>{ 0.2, 0.2 };
 
-        m_main_layout.add<ui::Button>(
+        m_main_layout.add<ui::TextButton>(
                 service_provider, "Return", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_next_command = Command::Return;
                     return false;
                 },

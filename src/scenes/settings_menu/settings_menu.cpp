@@ -52,10 +52,10 @@ namespace scenes {
                 }
         );
 
-        m_main_grid.add<ui::Button>(
+        m_main_grid.add<ui::TextButton>(
                 service_provider, "Return", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_should_exit = true;
                     return false;
                 },

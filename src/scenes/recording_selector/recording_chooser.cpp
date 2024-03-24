@@ -8,7 +8,7 @@
 #include "manager/recording/recording.hpp"
 #include "manager/recording/recording_reader.hpp"
 #include "manager/resource_manager.hpp"
-#include "ui/components/button.hpp"
+#include "ui/components/text_button.hpp"
 
 custom_ui::RecordingFileChooser::RecordingFileChooser(
                 ServiceProvider* service_provider,
@@ -26,10 +26,10 @@ custom_ui::RecordingFileChooser::RecordingFileChooser(
        }{
 
 
-    m_main_grid.add<ui::Button>(
+    m_main_grid.add<ui::TextButton>(
             service_provider, "Select Recording", service_provider->fonts().get(FontId::Default), Color::white(),
             focus_helper.focus_id(),
-            [service_provider, this](const ui::Button&) -> bool {
+            [service_provider, this](const ui::TextButton&) -> bool {
                 this->prepare_dialog(service_provider);
 
                 const auto result = helper::openMultipleFilesDialog({
@@ -53,10 +53,10 @@ custom_ui::RecordingFileChooser::RecordingFileChooser(
     );
 
 
-    m_main_grid.add<ui::Button>(
+    m_main_grid.add<ui::TextButton>(
             service_provider, "Select Recording Folder", service_provider->fonts().get(FontId::Default), Color::white(),
             focus_helper.focus_id(),
-            [this, service_provider](const ui::Button&) -> bool {
+            [this, service_provider](const ui::TextButton&) -> bool {
                 this->prepare_dialog(service_provider);
 
                 const auto result = helper::openFolderDialog();
@@ -87,9 +87,9 @@ custom_ui::RecordingFileChooser::RecordingFileChooser(
 }
 
 void custom_ui::RecordingFileChooser::render(const ServiceProvider& service_provider) const {
-    auto color = has_focus()    ? is_hovered() ? "#00f2ff"_rgb : "#00bbff"_rgb
-                 : is_hovered() ? "#C9C9C9"_rgb
-                                : "#9C9C9C"_rgb;
+    auto color = has_focus()    ? is_hovered() ? "#00f2ff"_c : "#00bbff"_c
+                 : is_hovered() ? "#C9C9C9"_c
+                                : "#9C9C9C"_c;
 
     service_provider.renderer().draw_rect_filled(layout().get_rect(), color);
 

@@ -61,9 +61,9 @@ custom_ui::RecordingComponent::RecordingComponent(
 
 void custom_ui::RecordingComponent::render(const ServiceProvider& service_provider) const {
 
-    auto color = has_focus()    ? is_hovered() ? "#00f2ff"_rgb : "#00bbff"_rgb
-                 : is_hovered() ? "hsv(0, 0, 0.79)"_hsv
-                                : "#9C9C9C"_rgb;
+    auto color = has_focus()    ? is_hovered() ? "#00f2ff"_c : "#00bbff"_c
+                 : is_hovered() ? "hsv(0, 0, 0.79)"_c
+                                : "#9C9C9C"_c;
 
     service_provider.renderer().draw_rect_filled(layout().get_rect(), color);
 
