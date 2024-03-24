@@ -11,11 +11,11 @@ helper::expected<Color, std::string> Color::from_string(const std::string& value
 
     const auto result = detail::get_color_from_string(value);
 
-    if (const_utils::has_value(result)) {
-        return const_utils::value(result);
+    if (result.has_value()) {
+        return result.value();
     }
 
-    return helper::unexpected<std::string>{ const_utils::error(result) };
+    return helper::unexpected<std::string>{ result.error() };
 }
 
 
