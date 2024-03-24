@@ -6,6 +6,7 @@
 #include "ui/widget.hpp"
 
 #include <string>
+#include <filesystem>
 
 namespace ui {
     struct ImageView final : public Widget {
@@ -16,7 +17,7 @@ namespace ui {
     public:
         explicit ImageView(
                 ServiceProvider* service_provider,
-                const std::string& image_path,
+                const std::filesystem::path& image_path,
                 std::pair<double, double> size,
                 bool respect_ratio,
                 Alignment alignment,

@@ -4,7 +4,7 @@
 
 ui::ImageView::ImageView(
         ServiceProvider* service_provider,
-        const std::string& image_path,
+        const std::filesystem::path& image_path,
         std::pair<double, double> size,
         bool respect_ratio,
         Alignment alignment,
