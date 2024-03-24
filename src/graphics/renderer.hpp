@@ -8,6 +8,7 @@
 
 #include <SDL.h>
 #include <string>
+#include <filesystem>
 
 struct Renderer final {
 public:
@@ -63,7 +64,7 @@ public:
         texture.render(m_renderer, from, to);
     }
 
-    [[nodiscard]] Texture load_image(const std::string& image_path) const;
+    [[nodiscard]] Texture load_image(const std::filesystem::path& image_path) const;
     [[nodiscard]] Texture prerender_text(
             const std::string& text,
             const Font& font,

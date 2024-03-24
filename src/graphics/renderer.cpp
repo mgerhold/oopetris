@@ -30,7 +30,7 @@ void Renderer::present() const {
     SDL_RenderPresent(m_renderer);
 }
 
-Texture Renderer::load_image(const std::string& image_path) const {
+Texture Renderer::load_image(const std::filesystem::path& image_path) const {
     return Texture::from_image(m_renderer, image_path);
 }
 
