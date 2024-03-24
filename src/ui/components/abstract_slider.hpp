@@ -30,12 +30,16 @@ namespace ui {
 
         [[nodiscard]] virtual std::pair<shapes::URect, shapes::URect> get_rectangles() const = 0;
 
+        virtual void after_update(){};
+
         void change_layout() {
 
             const auto& [bar_rect, slider_rect] = get_rectangles();
 
             m_bar_rect = bar_rect;
             m_slider_rect = slider_rect;
+
+            after_update();
         }
 
     protected:

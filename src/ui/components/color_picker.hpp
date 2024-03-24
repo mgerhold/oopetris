@@ -14,7 +14,13 @@ namespace detail {
 
     // it is intended, that this never has focus, than the scroll wheel doesn't work, but it shouldn't work, since scrolling a color slider isn't intended behaviour
     struct ColorSlider : public ui::AbstractSlider<double> {
+    private:
+        std::unique_ptr<Texture> m_texture;
+        ServiceProvider* m_service_provider;
+
+    public:
         explicit ColorSlider(
+                ServiceProvider* service_provider,
                 Range range,
                 Getter getter,
                 Setter setter,
@@ -27,6 +33,8 @@ namespace detail {
 
     private:
         [[nodiscard]] std::pair<shapes::URect, shapes::URect> get_rectangles() const override;
+
+        void after_update() override;
     };
 
 
