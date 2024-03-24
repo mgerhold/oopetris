@@ -5,7 +5,6 @@
 #include "helper/types.hpp"
 #include "helper/utils.hpp"
 #include <limits>
-#include <stdexcept>
 
 
 namespace {
@@ -88,16 +87,17 @@ namespace {
         return const_utils::error_result<u8>("the input must be a valid hex character");
     }
 
+
+    //NOLINTBEGIN(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+
     // decode a single 2 digit color value in hex
     [[nodiscard]] constexpr const_utils::ResultType<u8> single_hex_color_value(const char* input) {
 
-        const auto first = single_hex_number(input[0] //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-        );
+        const auto first = single_hex_number(input[0]);
 
         PROPAGATE(first, u8);
 
-        const auto second = single_hex_number(input[1] //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-        );
+        const auto second = single_hex_number(input[1]);
 
         PROPAGATE(second, u8);
 
@@ -118,7 +118,7 @@ namespace {
 
         for (std::size_t i = 0;; ++i) {
 
-            const char current_char = value[i]; //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+            const char current_char = value[i];
 
             switch (current_char) {
                 case ' ':
@@ -132,9 +132,7 @@ namespace {
                     break;
                 case ',':
                 case ')':
-                    return const_utils::good_result<DoubleReturnValue>(
-                            { result, value + i } //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-                    );
+                    return const_utils::good_result<DoubleReturnValue>({ result, value + i });
                 case '\0':
                     return const_utils::error_result<DoubleReturnValue>("input ended too early");
                 default: {
@@ -166,11 +164,11 @@ namespace {
         std::size_t mul_unit = 10;
 
         // skip leading white space
-        while (value[start] == ' ') { //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+        while (value[start] == ' ') {
             ++start;
         }
 
-        if (value[start] == '0' && value[start + 1] == 'x') { //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+        if (value[start] == '0' && value[start + 1] == 'x') {
             start += 2;
             accept_hex = true;
             mul_unit = 0x10;
@@ -186,7 +184,7 @@ namespace {
 
         for (std::size_t i = start;; ++i) {
 
-            const char current_char = value[i]; //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+            const char current_char = value[i];
 
             switch (current_char) {
                 case ' ':
@@ -194,9 +192,7 @@ namespace {
                     break;
                 case ',':
                 case ')':
-                    return const_utils::good_result<AnyColorReturnValue>(
-                            { result, value + i } //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-                    );
+                    return const_utils::good_result<AnyColorReturnValue>({ result, value + i });
                 case '\0':
                     return const_utils::error_result<AnyColorReturnValue>("input ended too early");
                 default: {
@@ -230,19 +226,13 @@ namespace {
 
         if (size == const_constants::hex_rgb_size) {
 
-            const auto r = single_hex_color_value(
-                    input + const_constants::red_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto r = single_hex_color_value(input + const_constants::red_offset);
             PROPAGATE(r, Color);
 
-            const auto g = single_hex_color_value(
-                    input + const_constants::green_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto g = single_hex_color_value(input + const_constants::green_offset);
             PROPAGATE(g, Color);
 
-            const auto b = single_hex_color_value(
-                    input + const_constants::blue_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto b = single_hex_color_value(input + const_constants::blue_offset);
             PROPAGATE(b, Color);
 
             return const_utils::good_result(Color{ const_utils::value(r), const_utils::value(g), const_utils::value(b) }
@@ -251,24 +241,16 @@ namespace {
 
         if (size == const_constants::hex_rgba_size) {
 
-            const auto r = single_hex_color_value(
-                    input + const_constants::red_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto r = single_hex_color_value(input + const_constants::red_offset);
             PROPAGATE(r, Color);
 
-            const auto g = single_hex_color_value(
-                    input + const_constants::green_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto g = single_hex_color_value(input + const_constants::green_offset);
             PROPAGATE(g, Color);
 
-            const auto b = single_hex_color_value(
-                    input + const_constants::blue_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto b = single_hex_color_value(input + const_constants::blue_offset);
             PROPAGATE(b, Color);
 
-            const auto a = single_hex_color_value(
-                    input + const_constants::alpha_offset //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            );
+            const auto a = single_hex_color_value(input + const_constants::alpha_offset);
             PROPAGATE(a, Color);
 
             return const_utils::good_result(Color{ const_utils::value(r), const_utils::value(g), const_utils::value(b),
@@ -282,12 +264,10 @@ namespace {
     [[nodiscard]] constexpr const_utils::ResultType<Color>
     get_color_from_rgb_string(const char* input, std::size_t) { //NOLINT(readability-function-cognitive-complexity
 
-        if (input[0] == 'r' && input[1] == 'g' //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            && input[2] == 'b') {              //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            if (input[3] == '(') {             //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+        if (input[0] == 'r' && input[1] == 'g' && input[2] == 'b') {
+            if (input[3] == '(') {
 
-                const auto r_result =
-                        single_color_value_any(input + 4); //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+                const auto r_result = single_color_value_any(input + 4);
 
                 PROPAGATE(r_result, Color);
 
@@ -340,7 +320,7 @@ namespace {
             }
 
 
-            if (input[3] == 'a' && input[4] == '(') { //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+            if (input[3] == 'a' && input[4] == '(') {
 
 
                 const auto r_result = single_double_color_value(input + 5);
@@ -419,12 +399,10 @@ namespace {
     [[nodiscard]] constexpr const_utils::ResultType<Color>
     get_color_from_hsv_string(const char* input, std::size_t) { //NOLINT(readability-function-cognitive-complexity
 
-        if (input[0] == 'h' && input[1] == 's' //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            && input[2] == 'v') {              //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
-            if (input[3] == '(') {             //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+        if (input[0] == 'h' && input[1] == 's' && input[2] == 'v') {
+            if (input[3] == '(') {
 
-                const auto h_result =
-                        single_double_color_value(input + 4); //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+                const auto h_result = single_double_color_value(input + 4);
 
                 PROPAGATE(h_result, Color);
 
@@ -479,7 +457,7 @@ namespace {
             }
 
 
-            if (input[3] == 'a' && input[4] == '(') { //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+            if (input[3] == 'a' && input[4] == '(') {
 
 
                 const auto h_result = single_double_color_value(input + 5);
@@ -563,7 +541,7 @@ namespace {
             return const_utils::error_result<Color>("not enough data to determine the literal type");
         }
 
-        switch (input[0]) { //NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+        switch (input[0]) {
             case '#':
                 return get_color_from_hex_string(input, size);
             case 'r':
@@ -574,7 +552,7 @@ namespace {
                 return const_utils::error_result<Color>("Unrecognized color literal");
         }
     }
-
+    //NOLINTEND(cppcoreguidelines-pro-bounds-pointer-arithmetic)
 } // namespace
 
 
