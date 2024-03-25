@@ -157,6 +157,9 @@ namespace {
                 }
             }
         }
+
+        // this is unreachable in theory, but in MSVC not?!?!?
+        return const_utils::expected<DoubleReturnValue>::error_result("how did you end up here, MSVC?!?!?!");
     }
 
     using AnyColorReturnValue = CharIteratorResult<std::size_t>;
@@ -223,6 +226,9 @@ namespace {
                 }
             }
         }
+
+        // this is unreachable in theory, but in MSVC not?!?!?
+        return const_utils::expected<AnyColorReturnValue>::error_result("how did you end up here, MSVC?!?!?!");
     }
 
 
