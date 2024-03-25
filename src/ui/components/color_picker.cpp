@@ -152,12 +152,6 @@ detail::ColorCanvas::handle_event(const SDL_Event& event, const Window* window) 
                 m_is_dragging = true;
                 SDL_CaptureMouse(SDL_TRUE);
                 handled = { true, ui::EventHandleType::RequestFocus };
-
-            } else if (utils::is_event_in(window, event, fill_rect)) {
-
-                m_is_dragging = true;
-                SDL_CaptureMouse(SDL_TRUE);
-                handled = { true, ui::EventHandleType::RequestFocus };
             }
         } else if (utils::event_is_click_event(event, utils::CrossPlatformClickEvent::ButtonUp)) {
 
@@ -234,7 +228,7 @@ void detail::ColorCanvas::redraw_texture() {
 
     for (u32 y = 0; y < h; y++) {
         for (u32 x = 0; x < w; x++) {
-            Color color{
+            const Color color{
                 HSVColor{
                          hue, static_cast<double>(x) / static_cast<double>(w),
                          1.0 - (static_cast<double>(y) / static_cast<double>(h)),
