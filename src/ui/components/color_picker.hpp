@@ -36,7 +36,7 @@ namespace detail {
     };
 
 
-    struct ColorCanvas : public ui::Widget, public ui::Hoverable {
+    struct ColorCanvas : public ui::Widget {
     public:
         using Callback = std::function<void(const shapes::AbstractPoint<double>& value)>;
 

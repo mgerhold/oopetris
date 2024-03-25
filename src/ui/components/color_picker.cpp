@@ -5,7 +5,6 @@
 #include "graphics/rect.hpp"
 #include "manager/resource_manager.hpp"
 #include "ui/components/textinput.hpp"
-#include "ui/hoverable.hpp"
 #include "ui/layout.hpp"
 #include "ui/widget.hpp"
 
@@ -98,7 +97,6 @@ detail::ColorCanvas::ColorCanvas(
         bool is_top_level
 )
     : ui::Widget{ layout, ui::WidgetType::Component, is_top_level },
-      ui::Hoverable{ layout.get_rect() },
       m_service_provider{ service_provider },
       m_current_color{ start_color.to_hsv_color() },
       m_callback{ std::move(callback) } {
