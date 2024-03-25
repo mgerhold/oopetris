@@ -7,6 +7,7 @@
 #include "window.hpp"
 
 #include <SDL.h>
+#include <filesystem>
 #include <string>
 
 struct Renderer final {
@@ -52,6 +53,18 @@ public:
         );
     }
 
+    template<typename S>
+    void draw_pixel(const shapes::AbstractPoint<S>& location, const Color& color) const {
+        set_draw_color(color);
+        SDL_RenderDrawPoint(m_renderer, static_cast<int>(location.x), static_cast<int>(location.y));
+    }
+
+    template<typename S>
+    void draw_self_computed_circle(const shapes::AbstractPoint<S>& center, S diameter, const Color& color) const {
+        set_draw_color(color);
+        draw_self_computed_circle_impl(center.template cast<i32>(), static_cast<i32>(diameter));
+    }
+
     template<typename T>
     void draw_texture(const Texture& texture, const shapes::AbstractRect<T>& rect) const {
         texture.render(m_renderer, rect);
@@ -63,7 +76,7 @@ public:
         texture.render(m_renderer, from, to);
     }
 
-    [[nodiscard]] Texture load_image(const std::string& image_path) const;
+    [[nodiscard]] Texture load_image(const std::filesystem::path& image_path) const;
     [[nodiscard]] Texture prerender_text(
             const std::string& text,
             const Font& font,
@@ -79,5 +92,6 @@ public:
 
     void present() const;
 
-    friend struct Text;
+private:
+    void draw_self_computed_circle_impl(const shapes::IPoint& center, int diameter) const;
 };

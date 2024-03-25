@@ -124,7 +124,7 @@ namespace utils {
 
     [[nodiscard]] bool event_is_click_event(const SDL_Event& event, CrossPlatformClickEvent click_type);
 
-    [[nodiscard]] std::pair<u32, u32> get_raw_coordinates(const Window* window, const SDL_Event& event);
+    [[nodiscard]] std::pair<i32, i32> get_raw_coordinates(const Window* window, const SDL_Event& event);
 
     [[nodiscard]] bool is_event_in(const Window* window, const SDL_Event& event, const shapes::URect& rect);
 

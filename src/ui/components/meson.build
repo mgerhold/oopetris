@@ -1,6 +1,10 @@
 src_files += files(
-    'button.cpp',
+    'abstract_slider.hpp',
     'button.hpp',
+    'color_picker.cpp',
+    'color_picker.hpp',
+    'image_button.cpp',
+    'image_button.hpp',
     'image_view.cpp',
     'image_view.hpp',
     'label.cpp',
@@ -9,6 +13,8 @@ src_files += files(
     'link_label.hpp',
     'slider.cpp',
     'slider.hpp',
+    'text_button.cpp',
+    'text_button.hpp',
     'textinput.cpp',
     'textinput.hpp',
 )

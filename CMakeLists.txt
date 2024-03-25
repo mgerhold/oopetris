@@ -55,6 +55,7 @@ add_executable(oopetris
     src/helper/bool_wrapper.hpp
     src/helper/clock_source.cpp
     src/helper/clock_source.hpp
+    src/helper/color.cpp
     src/helper/color.hpp
     src/helper/command_line_arguments.hpp
     src/helper/constants.hpp
@@ -124,7 +125,6 @@ add_executable(oopetris
     src/scenes/single_player_game/single_player_game.cpp
     src/scenes/single_player_game/single_player_game.hpp
     src/thirdparty/hash-library/sha256.cpp
-    src/ui/components/button.cpp
     src/ui/components/button.hpp
     src/ui/components/image_view.cpp
     src/ui/components/image_view.hpp
@@ -134,6 +134,7 @@ add_executable(oopetris
     src/ui/components/link_label.hpp
     src/ui/components/slider.cpp
     src/ui/components/slider.hpp
+    src/ui/components/text_button.cpp
     src/ui/components/textinput.cpp
     src/ui/components/textinput.hpp
     src/ui/focusable.hpp

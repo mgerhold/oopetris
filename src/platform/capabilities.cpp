@@ -290,7 +290,7 @@ namespace {
 #endif
 }
 
-[[nodiscard]] std::pair<u32, u32> utils::get_raw_coordinates(const Window* window, const SDL_Event& event) {
+[[nodiscard]] std::pair<i32, i32> utils::get_raw_coordinates(const Window* window, const SDL_Event& event) {
 
     assert(utils::event_is_click_event(event, utils::CrossPlatformClickEvent::Any) && "expected a click event");
 
@@ -299,8 +299,8 @@ namespace {
     const double x_percent = event.tfinger.x;
     const double y_percent = event.tfinger.y;
     const auto window_size = window->size();
-    const auto x = static_cast<u32>(std::round(x_percent * window_size.x));
-    const auto y = static_cast<u32>(std::round(y_percent * window_size.y));
+    const auto x = static_cast<i32>(std::round(x_percent * window_size.x));
+    const auto y = static_cast<i32>(std::round(y_percent * window_size.y));
 
 
 #elif defined(__SWITCH__)
@@ -330,18 +330,19 @@ namespace {
 #endif
 
 
-    return { static_cast<u32>(x), static_cast<u32>(y) };
+    return { static_cast<i32>(x), static_cast<i32>(y) };
 }
 
 
 [[nodiscard]] bool utils::is_event_in(const Window* window, const SDL_Event& event, const shapes::URect& rect) {
 
     const auto& [x, y] = get_raw_coordinates(window, event);
+    const auto casted_rect = rect.cast<i32>();
 
-    const auto rect_start_x = rect.top_left.x;
-    const auto rect_start_y = rect.top_left.y;
-    const auto rect_end_x = rect.bottom_right.x;
-    const auto rect_end_y = rect.bottom_right.y;
+    const auto rect_start_x = casted_rect.top_left.x;
+    const auto rect_start_y = casted_rect.top_left.y;
+    const auto rect_end_x = casted_rect.bottom_right.x;
+    const auto rect_end_y = casted_rect.bottom_right.y;
 
 
     const bool button_clicked = (x >= rect_start_x and x <= rect_end_x and y >= rect_start_y and y <= rect_end_y);

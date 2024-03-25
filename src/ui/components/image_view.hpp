@@ -5,6 +5,7 @@
 #include "ui/hoverable.hpp"
 #include "ui/widget.hpp"
 
+#include <filesystem>
 #include <string>
 
 namespace ui {
@@ -16,7 +17,7 @@ namespace ui {
     public:
         explicit ImageView(
                 ServiceProvider* service_provider,
-                const std::string& image_path,
+                const std::filesystem::path& image_path,
                 std::pair<double, double> size,
                 bool respect_ratio,
                 Alignment alignment,

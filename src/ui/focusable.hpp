@@ -12,8 +12,13 @@ namespace ui {
     public:
         FocusHelper(u32 start_focus_id = 0) : m_focus_id{ start_focus_id } {};
 
-        u32 focus_id() {
+        [[nodiscard]] u32 focus_id() {
             return m_focus_id++;
+        }
+
+        // return a placeholder, that signifies, this focus id is unused
+        [[nodiscard]] static u32 FocusIDUnused() {
+            return static_cast<u32>(-1);
         }
     };
 

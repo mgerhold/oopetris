@@ -30,47 +30,47 @@ namespace scenes {
                                                 ? std::pair<double, double>{ 0.1, 0.1 }
                                                 : std::pair<double, double>{ 0.2, 0.2 };
 
-        const auto local_button_id = m_main_grid.add<ui::Button>(
+        const auto local_button_id = m_main_grid.add<ui::TextButton>(
                 service_provider, "Local", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_next_command = Command::LocalMultiPlayer;
                     return false;
                 },
                 button_size, button_alignment, button_margins
         );
-        m_main_grid.get<ui::Button>(local_button_id)->disable();
+        m_main_grid.get<ui::TextButton>(local_button_id)->disable();
 
-        const auto online_button_id = m_main_grid.add<ui::Button>(
+        const auto online_button_id = m_main_grid.add<ui::TextButton>(
                 service_provider, "Online", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_next_command = Command::OnlineMultiPlayer;
                     return false;
                 },
                 button_size, button_alignment, button_margins
         );
 #ifdef _ONLINE_MULTIPLAYER_NOT_SUPPORTED
-        m_main_grid.get<ui::Button>(online_button_id)->disable();
+        m_main_grid.get<ui::TextButton>(online_button_id)->disable();
 #else
         UNUSED(online_button_id);
 #endif
 
-        const auto ai_button_id = m_main_grid.add<ui::Button>(
+        const auto ai_button_id = m_main_grid.add<ui::TextButton>(
                 service_provider, "vs AI", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_next_command = Command::AIMultiPlayer;
                     return false;
                 },
                 button_size, button_alignment, button_margins
         );
-        m_main_grid.get<ui::Button>(ai_button_id)->disable();
+        m_main_grid.get<ui::TextButton>(ai_button_id)->disable();
 
-        m_main_grid.add<ui::Button>(
+        m_main_grid.add<ui::TextButton>(
                 service_provider, "Return", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_next_command = Command::Return;
                     return false;
                 },

@@ -4,12 +4,12 @@
 
 Texture::Texture(SDL_Texture* raw_texture) : m_raw_texture{ raw_texture } { }
 
-Texture Texture::from_image(SDL_Renderer* renderer, const std::string& image_path) {
-    SDL_Texture* image = IMG_LoadTexture(renderer, image_path.c_str());
+Texture Texture::from_image(SDL_Renderer* renderer, const std::filesystem::path& image_path) {
+    SDL_Texture* image = IMG_LoadTexture(renderer, image_path.string().c_str());
 
     if (image == nullptr) {
         throw std::runtime_error(
-                fmt::format("Failed to load image from path '{}' with error: {}", image_path, SDL_GetError())
+                fmt::format("Failed to load image from path '{}' with error: {}", image_path.string(), SDL_GetError())
         );
     }
     return Texture{ image };

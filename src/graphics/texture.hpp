@@ -10,6 +10,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <filesystem>
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 #include <string>
@@ -23,7 +24,7 @@ private:
     explicit Texture(SDL_Texture* raw_texture);
 
 public:
-    static Texture from_image(SDL_Renderer* renderer, const std::string& image_path);
+    static Texture from_image(SDL_Renderer* renderer, const std::filesystem::path& image_path);
 
     static Texture prerender_text(
             SDL_Renderer* renderer,

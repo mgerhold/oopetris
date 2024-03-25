@@ -37,8 +37,8 @@ namespace scenes {
                     const auto value = service_provider->music_manager().get_volume();
                     return value.has_value() ? value.value() : 0.0F;
                 },
-                [service_provider](const float& amount) {
-                    const auto mapped_amount = amount <= 0.0F ? helper::nullopt : helper::optional<float>{ amount };
+                [service_provider](const double& amount) {
+                    const auto mapped_amount = amount <= 0.0F ? helper::nullopt : helper::optional<double>{ amount };
                     return service_provider->music_manager().set_volume(mapped_amount, false, false);
                 },
                 0.05F, std::pair<double, double>{ 0.6, 1.0 },
@@ -47,15 +47,15 @@ namespace scenes {
 
         service_provider->music_manager().add_volume_listener(
                 listener_name,
-                [this, slider_index](helper::optional<float>) {
+                [this, slider_index](helper::optional<double>) {
                     this->m_main_grid.get<ui::Slider>(slider_index)->on_change();
                 }
         );
 
-        m_main_grid.add<ui::Button>(
+        m_main_grid.add<ui::TextButton>(
                 service_provider, "Return", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_should_exit = true;
                     return false;
                 },

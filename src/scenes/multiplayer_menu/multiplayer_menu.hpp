@@ -1,8 +1,8 @@
 #pragma once
 
 #include "scenes/scene.hpp"
-#include "ui/components/button.hpp"
 #include "ui/components/label.hpp"
+#include "ui/components/text_button.hpp"
 #include "ui/layouts/grid_layout.hpp"
 
 namespace scenes {

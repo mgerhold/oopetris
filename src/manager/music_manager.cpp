@@ -219,21 +219,21 @@ void MusicManager::hook_music_finished() {
 }
 
 
-[[nodiscard]] helper::optional<float> MusicManager::get_volume() const {
+[[nodiscard]] helper::optional<double> MusicManager::get_volume() const {
 #ifdef DEBUG_BUILD
     int result = Mix_VolumeMusic(-1);
     if (result == 0) {
         return helper::nullopt;
     }
 
-    return static_cast<float>(result) / MIX_MAX_VOLUME;
+    return static_cast<double>(result) / MIX_MAX_VOLUME;
 #else
     return volume;
 #endif
 }
 
 void MusicManager::set_volume(
-        const helper::optional<float> new_volume,
+        const helper::optional<double> new_volume,
         const bool force_update,
         const bool notify_listeners
 ) {
@@ -277,26 +277,26 @@ void MusicManager::set_volume(
     }
 }
 
-helper::optional<float> MusicManager::change_volume(const std::int8_t steps) {
+helper::optional<double> MusicManager::change_volume(const std::int8_t steps) {
     const auto current_volume = get_volume();
 
     if (steps == 0) {
         return current_volume;
     }
 
-    helper::optional<float> new_volume = current_volume;
+    helper::optional<double> new_volume = current_volume;
 
     if (steps > 0) {
 
         if (not current_volume.has_value()) {
-            new_volume = MusicManager::step_width * static_cast<float>(steps);
+            new_volume = MusicManager::step_width * static_cast<double>(steps);
 
         } else {
             if (current_volume >= 1.0F) {
                 return 1.0F;
             }
 
-            new_volume = current_volume.value() + MusicManager::step_width * static_cast<float>(steps);
+            new_volume = current_volume.value() + MusicManager::step_width * static_cast<double>(steps);
         }
 
         if (new_volume >= 1.0F) {
@@ -316,7 +316,7 @@ helper::optional<float> MusicManager::change_volume(const std::int8_t steps) {
             new_volume = helper::nullopt;
         } else {
 
-            new_volume = current_volume.value() + MusicManager::step_width * static_cast<float>(steps);
+            new_volume = current_volume.value() + MusicManager::step_width * static_cast<double>(steps);
 
 
             if (new_volume <= 0.0F) {

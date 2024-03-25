@@ -10,7 +10,7 @@
 #include "recording_component.hpp"
 #include "recording_selector.hpp"
 #include "scenes/replay_game/replay_game.hpp"
-#include "ui/components/button.hpp"
+#include "ui/components/text_button.hpp"
 #include "ui/layout.hpp"
 #include "ui/layouts/scroll_layout.hpp"
 #include "ui/widget.hpp"
@@ -56,10 +56,10 @@ namespace scenes {
                                                 ? std::pair<double, double>{ 0.1, 0.1 }
                                                 : std::pair<double, double>{ 0.2, 0.2 };
 
-        m_main_layout.add<ui::Button>(
+        m_main_layout.add<ui::TextButton>(
                 service_provider, "Return", service_provider->fonts().get(FontId::Default), Color::white(),
                 focus_helper.focus_id(),
-                [this](const ui::Button&) -> bool {
+                [this](const ui::TextButton&) -> bool {
                     m_next_command = Command::Return;
                     return false;
                 },

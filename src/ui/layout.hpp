@@ -9,7 +9,7 @@
 
 namespace ui {
 
-    enum class LayoutType : u8 { FullScreen, Relative, Absolut };
+    enum class LayoutType : u8 { FullScreen, Relative, Absolut, Raw };
 
     struct Layout {
     private:
@@ -20,6 +20,8 @@ namespace ui {
         Layout(const shapes::URect& rect, LayoutType type) : m_rect{ rect }, type{ type } { }
 
     public:
+        Layout(const shapes::URect& rect) : m_rect{ rect }, type{ LayoutType::Raw } { }
+
         [[nodiscard]] const shapes::URect& get_rect() const {
             return m_rect;
         }
