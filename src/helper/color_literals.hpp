@@ -40,7 +40,9 @@ namespace {
             V m_value;
             std::string m_error;
 
-            constexpr expected(V value, std::string error) : m_value{ value }, m_error{ std::move(error) } { }
+            constexpr expected(V value, const std::string& error) //NOLINT(modernize-pass-by-value)
+                : m_value{ value },
+                  m_error{ error } { }
 
         public:
             [[nodiscard]] constexpr static expected<V> good_result(V type) {
@@ -154,12 +156,10 @@ namespace {
                     } else {
                         result = (result * 10.0) + static_cast<double>(value_of_char);
                     }
+                    break;
                 }
             }
         }
-
-        // this is unreachable in theory, but in MSVC not?!?!?
-        return const_utils::expected<DoubleReturnValue>::error_result("how did you end up here, MSVC?!?!?!");
     }
 
     using AnyColorReturnValue = CharIteratorResult<std::size_t>;
@@ -223,12 +223,10 @@ namespace {
 
                     result *= mul_unit;
                     result += value_of_char;
+                    break;
                 }
             }
         }
-
-        // this is unreachable in theory, but in MSVC not?!?!?
-        return const_utils::expected<AnyColorReturnValue>::error_result("how did you end up here, MSVC?!?!?!");
     }
 
 
