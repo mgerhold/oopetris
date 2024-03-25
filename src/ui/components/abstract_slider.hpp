@@ -130,8 +130,6 @@ namespace ui {
                         const Type percentage =
                                 static_cast<Type>(x - bar_rect.top_left.x) / static_cast<Type>(bar_rect.width());
                         m_current_value = percentage * (m_range.second - m_range.first) + m_range.first;
-                        m_is_dragging = true;
-                        SDL_CaptureMouse(SDL_TRUE);
                     }
                 };
 
@@ -141,6 +139,8 @@ namespace ui {
                     if (utils::is_event_in(window, event, m_bar_rect)) {
 
                         change_value_on_scroll();
+                        m_is_dragging = true;
+                        SDL_CaptureMouse(SDL_TRUE);
                         handled = { true, ui::EventHandleType::RequestFocus };
 
                     } else if (utils::is_event_in(window, event, m_slider_rect)) {

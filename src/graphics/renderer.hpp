@@ -53,6 +53,18 @@ public:
         );
     }
 
+    template<typename S>
+    void draw_pixel(const shapes::AbstractPoint<S>& location, const Color& color) const {
+        set_draw_color(color);
+        SDL_RenderDrawPoint(m_renderer, static_cast<int>(location.x), static_cast<int>(location.y));
+    }
+
+    template<typename S>
+    void draw_self_computed_circle(const shapes::AbstractPoint<S>& center, S diameter, const Color& color) const {
+        set_draw_color(color);
+        draw_self_computed_circle_impl(center.template cast<i32>(), static_cast<i32>(diameter));
+    }
+
     template<typename T>
     void draw_texture(const Texture& texture, const shapes::AbstractRect<T>& rect) const {
         texture.render(m_renderer, rect);
@@ -80,5 +92,6 @@ public:
 
     void present() const;
 
-    friend struct Text;
+private:
+    void draw_self_computed_circle_impl(const shapes::IPoint& center, int diameter) const;
 };

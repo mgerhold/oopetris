@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "graphics/point.hpp"
 #include "graphics/rect.hpp"
 #include "helper/color.hpp"
 #include "ui/components/abstract_slider.hpp"
@@ -36,18 +37,37 @@ namespace detail {
 
 
     struct ColorCanvas : public ui::Widget, public ui::Hoverable {
+    public:
+        using Callback = std::function<void(const shapes::AbstractPoint<double>& value)>;
 
+    private:
+        ServiceProvider* m_service_provider;
+        std::unique_ptr<Texture> m_texture{};
+        HSVColor m_current_color;
+        Callback m_callback;
+        bool m_is_dragging{ false };
+
+    public:
         explicit ColorCanvas(
+                ServiceProvider* service_provider,
+                const Color& start_color,
+                Callback callback,
                 const ui::Layout& layout,
                 bool is_top_level
-                //TODO
         );
+
+        ~ColorCanvas();
 
         void render(const ServiceProvider& service_provider) const override;
 
         helper::BoolWrapper<ui::EventHandleType> handle_event(const SDL_Event& event, const Window* window) override;
 
-        //TODO:
+        void on_change(const Color& color);
+
+        void draw_pseudo_circle(const ServiceProvider& service_provider) const;
+
+    private:
+        void redraw_texture();
     };
 
 
@@ -79,7 +99,6 @@ namespace ui {
                 const Layout& layout,
                 bool is_top_level
         );
-
 
     public:
         explicit ColorPicker(

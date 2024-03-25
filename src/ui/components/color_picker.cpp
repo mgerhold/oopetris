@@ -89,24 +89,167 @@ void detail::ColorSlider::render(const ServiceProvider& service_provider) const 
     renderer.draw_rect_filled(slider_rect(), Color::white(0xAA));
 }
 
-detail::ColorCanvas::ColorCanvas(const ui::Layout& layout, bool is_top_level)
-    : ui::Widget{ layout, ui::WidgetType::Component, is_top_level },
-      ui::Hoverable{ layout.get_rect() } { }
 
+detail::ColorCanvas::ColorCanvas(
+        ServiceProvider* service_provider,
+        const Color& start_color,
+        Callback callback,
+        const ui::Layout& layout,
+        bool is_top_level
+)
+    : ui::Widget{ layout, ui::WidgetType::Component, is_top_level },
+      ui::Hoverable{ layout.get_rect() },
+      m_service_provider{ service_provider },
+      m_current_color{ start_color.to_hsv_color() },
+      m_callback{ std::move(callback) } {
+    redraw_texture();
+}
+
+
+detail::ColorCanvas::~ColorCanvas() {
+    SDL_CaptureMouse(SDL_FALSE);
+}
 
 void detail::ColorCanvas::render(const ServiceProvider& service_provider) const {
-    //TODO
-    UNUSED(service_provider);
+    const auto& renderer = service_provider.renderer();
+
+    renderer.draw_texture(*m_texture, layout().get_rect());
+
+    draw_pseudo_circle(service_provider);
+}
+
+void detail::ColorCanvas::draw_pseudo_circle(const ServiceProvider& service_provider) const {
+    const auto& renderer = service_provider.renderer();
+
+    u32 diameter = 2;
+
+    // width == height here, since we assured that in the construction of the layout fro this component, so instead of taking the min of width and height i just use width, this fact is only used here, since it's not that bad, if it changes sometime in teh future
+    if (const double one_percent = static_cast<double>(layout().get_rect().width()) * 0.01; one_percent >= 2.0) {
+        diameter = static_cast<u32>(one_percent);
+    }
+
+    const auto [width, height] = layout().get_rect().to_dimension_point().cast<double>();
+
+    const auto center = shapes::AbstractPoint<double>(m_current_color.s * width, m_current_color.v * height).cast<u32>()
+                        + layout().get_rect().top_left;
+
+    const auto circle_color = m_is_dragging ? "#C7C7C7"_c : "#FFFFFF"_c;
+
+    renderer.draw_self_computed_circle(center, diameter, circle_color);
 }
 
 helper::BoolWrapper<ui::EventHandleType>
 detail::ColorCanvas::handle_event(const SDL_Event& event, const Window* window) {
 
-    //TODO
-    UNUSED(event);
-    UNUSED(window);
+
+    helper::BoolWrapper<ui::EventHandleType> handled = false;
+
+    const auto fill_rect = layout().get_rect();
+
+    if (utils::device_supports_clicks()) {
+        if (utils::event_is_click_event(event, utils::CrossPlatformClickEvent::ButtonDown)) {
+
+            if (utils::is_event_in(window, event, fill_rect)) {
+
+                m_is_dragging = true;
+                SDL_CaptureMouse(SDL_TRUE);
+                handled = { true, ui::EventHandleType::RequestFocus };
+
+            } else if (utils::is_event_in(window, event, fill_rect)) {
+
+                m_is_dragging = true;
+                SDL_CaptureMouse(SDL_TRUE);
+                handled = { true, ui::EventHandleType::RequestFocus };
+            }
+        } else if (utils::event_is_click_event(event, utils::CrossPlatformClickEvent::ButtonUp)) {
+
+            m_is_dragging = false;
+            SDL_CaptureMouse(SDL_FALSE);
+            handled = true;
+
+        } else if (utils::event_is_click_event(event, utils::CrossPlatformClickEvent::Motion)) {
+
+            if (m_is_dragging) {
+                handled = true;
+            }
+        }
+    }
+
+
+    if (handled) {
+
+        const auto& [x, y] = utils::get_raw_coordinates(window, event);
+
+
+        if (x <= static_cast<i32>(fill_rect.top_left.x)) {
+            m_current_color.s = 0.0;
+        } else if (x >= static_cast<i32>(fill_rect.bottom_right.x)) {
+            m_current_color.s = 1.0;
+        } else {
+            const double percentage =
+                    static_cast<double>(x - fill_rect.top_left.x) / static_cast<double>(fill_rect.width());
+            m_current_color.s = percentage;
+        }
+
+        if (y <= static_cast<i32>(fill_rect.top_left.y)) {
+            m_current_color.v = 0.0;
+        } else if (y >= static_cast<i32>(fill_rect.bottom_right.y)) {
+            m_current_color.v = 1.0;
+        } else {
+            const double percentage =
+                    static_cast<double>(y - fill_rect.top_left.y) / static_cast<double>(fill_rect.height());
+            m_current_color.v = percentage;
+        }
+
+        const shapes::AbstractPoint<double> point = { m_current_color.s, m_current_color.v };
+        m_callback(point);
+
+        return handled;
+    }
+
+    return false;
+
+
     return false;
 }
+
+void detail::ColorCanvas::on_change(const Color& color) {
+    m_current_color = color.to_hsv_color();
+
+    redraw_texture();
+}
+
+void detail::ColorCanvas::redraw_texture() {
+
+    const auto fill_rect = layout().get_rect();
+
+    m_texture = std::make_unique<Texture>(
+            m_service_provider->renderer().get_texture_for_render_target(fill_rect.to_dimension_point())
+    );
+
+    m_service_provider->renderer().set_render_target(*m_texture);
+
+    const auto w = fill_rect.width();
+    const auto h = fill_rect.height();
+
+    const auto hue = m_current_color.h;
+
+    for (u32 y = 0; y < h; y++) {
+        for (u32 x = 0; x < w; x++) {
+            Color color{
+                HSVColor{
+                         hue, static_cast<double>(x) / static_cast<double>(w),
+                         1.0 - (static_cast<double>(y) / static_cast<double>(h)),
+                         }
+            };
+
+            m_service_provider->renderer().draw_pixel(shapes::UPoint{ x, y }, color);
+        }
+    }
+
+    m_service_provider->renderer().reset_render_target();
+}
+
 
 ui::ColorPicker::ColorPicker(
         ServiceProvider* service_provider,
@@ -128,7 +271,17 @@ ui::ColorPicker::ColorPicker(
             ui::Alignment{ ui::AlignmentHorizontal::Middle, ui::AlignmentVertical::Bottom }
     );
 
-    m_color_canvas = std::make_unique<detail::ColorCanvas>(ui::Layout{ main_rect }, false);
+    m_color_canvas = std::make_unique<detail::ColorCanvas>(
+            service_provider, start_color,
+            [this](const shapes::AbstractPoint<double>& value) {
+                auto hsv_color = m_color.to_hsv_color();
+                hsv_color.s = value.x;
+                hsv_color.v = value.y;
+                this->m_color = Color{ hsv_color };
+                this->after_color_change(ColorChangeType::SV);
+            },
+            ui::Layout{ main_rect }, false
+    );
 
     auto rest_fill_rect = ui::RelativeLayout(fill_rect, 0.0, main_rect_height, 1.0, 1.0 - main_rect_height).get_rect();
 
@@ -251,10 +404,18 @@ helper::BoolWrapper<ui::EventHandleType> ui::ColorPicker::handle_event(const SDL
 }
 
 void ui::ColorPicker::after_color_change(ColorChangeType type) {
-    UNUSED(type);
-    //TODO
+    if (type != ColorChangeType::Hue) {
+        m_color_slider->on_change();
+    }
+
+    if (type != ColorChangeType::SV) {
+        m_color_canvas->on_change(m_color);
+    }
+
+    //TODO: change the text in the textinput!
 }
 
 void ui::ColorPicker::after_color_mode_change() {
     //TODO
+    //TODO: handle textinput chnages and events and also change it's vaöue every time the color is change
 }

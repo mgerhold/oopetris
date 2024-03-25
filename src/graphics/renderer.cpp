@@ -67,3 +67,42 @@ void Renderer::reset_render_target() const {
         throw std::runtime_error(fmt::format("Failed to set render texture target with error: {}", SDL_GetError()));
     }
 }
+
+void Renderer::draw_self_computed_circle_impl(const shapes::IPoint& center, i32 diameter) const {
+
+    //taken from: https://stackoverflow.com/questions/38334081/how-to-draw-circles-arcs-and-vector-graphics-in-sdl
+
+    const auto [center_x, center_y] = center;
+
+    const i32 radius = diameter / 2;
+
+    i32 x = radius - 1;
+    i32 y = 0;
+    i32 tx = 1;
+    i32 ty = 1;
+    i32 error = tx - diameter;
+
+    while (x >= y) {
+        //  Each of the following renders an octant of the circle
+        SDL_RenderDrawPoint(m_renderer, center_x + x, center_y - y);
+        SDL_RenderDrawPoint(m_renderer, center_x + x, center_y + y);
+        SDL_RenderDrawPoint(m_renderer, center_x - x, center_y - y);
+        SDL_RenderDrawPoint(m_renderer, center_x - x, center_y + y);
+        SDL_RenderDrawPoint(m_renderer, center_x + y, center_y - x);
+        SDL_RenderDrawPoint(m_renderer, center_x + y, center_y + x);
+        SDL_RenderDrawPoint(m_renderer, center_x - y, center_y - x);
+        SDL_RenderDrawPoint(m_renderer, center_x - y, center_y + x);
+
+        if (error <= 0) {
+            ++y;
+            error += ty;
+            ty += 2;
+        }
+
+        if (error > 0) {
+            --x;
+            tx += 2;
+            error += (tx - diameter);
+        }
+    }
+}
