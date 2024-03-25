@@ -160,6 +160,8 @@ namespace {
                 }
             }
         }
+
+        return const_utils::expected<DoubleReturnValue>::error_result("unreachable");
     }
 
     using AnyColorReturnValue = CharIteratorResult<std::size_t>;
@@ -227,6 +229,8 @@ namespace {
                 }
             }
         }
+
+        return const_utils::expected<AnyColorReturnValue>::error_result("unreachable");
     }
 
 
