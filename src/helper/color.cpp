@@ -39,9 +39,8 @@ helper::expected<Color, std::string> Color::from_string(const std::string& value
     delta = max - min;
     if (delta < 0.00001) {
         out.s = 0;
-        throw std::runtime_error{ "Undefined conversion, h would be NaN" };
         out.h = 0; // undefined, maybe nan?
-        return out;
+        throw std::runtime_error{ "Undefined conversion, h would be NaN" };
     }
     if (max > 0.0) {           // NOTE: if Max is == 0, this divide would cause a crash
         out.s = (delta / max); // s
@@ -51,7 +50,6 @@ helper::expected<Color, std::string> Color::from_string(const std::string& value
         out.s = 0.0;
         out.h = NAN; // its now undefined
         throw std::runtime_error{ "Undefined conversion, h would be NaN" };
-        return out;
     }
     if (r >= max) {              // > is bogus, just keeps compilor happy
         out.h = (g - b) / delta; // between yellow & magenta
