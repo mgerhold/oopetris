@@ -83,11 +83,11 @@ helper::expected<Color, std::string> Color::from_string(const std::string& value
             return fmt::format("#{:02x}{:02x}{:02x}{:02x}", r, g, b, a);
         }
         case SerializeMode::RGB: {
-            return fmt::format("rgba({}, {}, {}, {})", r, g, b, a);
+            return fmt::format("rgba({}, {}, {}, {:#2x})", r, g, b, a);
         }
         case SerializeMode::HSV: {
-            //TODO
-            return "TODO";
+            const auto color = to_hsv_color();
+            return fmt::format("hsva({:.2f}, {:.5f}, {:.5f}, {:#2x})", color.h, color.s, color.v, color.a);
         }
         default:
             utils::unreachable();
