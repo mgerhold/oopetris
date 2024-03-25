@@ -86,7 +86,7 @@ namespace ui {
         }
 
 
-        ~AbstractSlider() {
+        ~AbstractSlider() override {
             SDL_CaptureMouse(SDL_FALSE);
         }
 

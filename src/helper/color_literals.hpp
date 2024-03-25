@@ -40,7 +40,7 @@ namespace {
             V m_value;
             std::string m_error;
 
-            constexpr expected(V value, std::string error) : m_value{ value }, m_error{ error } { }
+            constexpr expected(V value, std::string error) : m_value{ value }, m_error{ std::move(error) } { }
 
         public:
             [[nodiscard]] constexpr static expected<V> good_result(V type) {

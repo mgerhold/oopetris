@@ -56,7 +56,7 @@ namespace detail {
                 bool is_top_level
         );
 
-        ~ColorCanvas();
+        ~ColorCanvas() override;
 
         void render(const ServiceProvider& service_provider) const override;
 

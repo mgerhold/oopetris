@@ -33,7 +33,7 @@ detail::ColorSlider::ColorSlider(
     const auto h = bar_rect().height();
 
     for (u32 x = 0; x < w; x++) {
-        Color color{
+        const Color color{
             HSVColor{(static_cast<double>(x) / static_cast<double>(w)) * 360.0, 1.0, 1.0}
         };
 
