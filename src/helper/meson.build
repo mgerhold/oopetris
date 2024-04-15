@@ -23,7 +23,6 @@ core_src_files += files(
     'timer.hpp',
     'types.hpp',
     'utils.hpp',
-
 )
 
 graphics_src_files += files(

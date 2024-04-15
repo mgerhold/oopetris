@@ -20,7 +20,7 @@ subdir('recordings')
 subdir('scenes')
 subdir('thirdparty')
 subdir('ui')
-
+subdir('dynamic_loader')
 
 if online_multiplayer_supported
     subdir('lobby')
